@@ -25,7 +25,7 @@ directory can be inserted from Twedit++ - simply go to ``CC3D Python->Python Uti
             return
 
         for cell in self.cellListByType(self.NONCONDENSING):
-            print >>fileHandle, 'cell.id=',cell.id,'volume=',cell.volume
+            fileHandle.write('%s,%d,%s,%f'%('cell.id=',cell.id,'volume=',cell.volume))
 
         fileHandle.close()
 
@@ -39,16 +39,9 @@ file for writing we use ``"w"`` . To open file in the read mode we would use
 for more information about file modes. If CC3D fails to open file in the
 simulation directory we print error message and return from step function.
 If the file open operation is successful we iterate over all cells of
-type NonCondensing and print cell id and cell current volume. Notice
-that when writing to a file in Python we have to use
+type NonCondensing and print cell id and cell current volume. 
 
-.. code-block:: python
-
-    print >>fileHandle
-
-syntax. The reminder of this print statemnt looks exactly as a regular
-print statement. Alternatively we can use the following syntax to write
-to a file:
+The syntax for the writing function is:
 
 .. code-block:: python
 
